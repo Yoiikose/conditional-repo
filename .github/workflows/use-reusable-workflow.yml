@@ -69,7 +69,7 @@ jobs:
           path: dist
   deploy:
     needs: build
-    uses: .\.github\worfklows\reusable.yml
+    uses: .github\worfklows\reusable.yml
   report:
     needs: [lint, deploy]
     if: failure()
