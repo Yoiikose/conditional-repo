@@ -7,8 +7,17 @@ on:
                 required: false
                 default: dist
                 type: string
+        # secrets:
+        #    some-secret:
+        #        required: true
+        outputs:
+            result:
+                description: The result
+                value: ${{jobs.reusable-deploy.outputs.outcome}}
 jobs:
     reusable-deploy:
+        Outputs:
+            outcome: ${{steps.set-result.outputs.step-result}}
         runs-on: ubuntu-latest
         steps:
             - name: Get artifact
@@ -18,4 +27,7 @@ jobs:
             - name: List files
               run: ls
             - name: Output info
-              run: echo "The output of my reusable workflow is so amazing"   
+              run: echo "The output of my reusable workflow is so amazing"
+            - name: Set result output
+              is: set-result
+              run: echo "step-result=success" >> $GITHUB_OUTPUT
