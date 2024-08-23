@@ -5,4 +5,4 @@ jobs:
         runs-on: ubutun-latest
         steps:
             - name: Output info
-              run: echo "Deploying & uploading"   
+              run: echo "The output of my reusable workflow is so amazing"   
